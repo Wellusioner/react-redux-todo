@@ -1,0 +1,1 @@
+export const CLICK_ME = "CLICK_ME";
