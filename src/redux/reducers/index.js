@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import userClick from './userClick'
+import TodoReducer from './TodoReducer'
 
 export default combineReducers({
-    user: userClick
+    todos: TodoReducer
 })

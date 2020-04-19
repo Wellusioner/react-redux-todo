@@ -1,18 +1,31 @@
 import React from 'react';
 import { TodoItem, TodoForm } from './components'
+import { connect } from 'react-redux'
+import get from 'lodash/get'
 
-const Home  = () =>{
+const Home  = (props) =>{
 
     return (
         <div className={'todo-wrapper'}>
-            <div className="todo-title">Todo App</div>
+            <div className="todo-title">A react-redux Todo App</div>
             <TodoForm />
             <div className="todo-group">
-                <TodoItem />
+                {
+                    get(props,'todos','').length
+                        ?
+                        get(props,'todos','').map(item => <TodoItem key={item.id} {...{item}} />)
+                        : <div className={'text-white'}>No to-do. Add some</div>
+                }
             </div>
         </div>
     );
 };
 
+const mapStateToProps = state => {
+    return {
+        todos: state.todos.todos
+    }
+};
 
-export default Home;
+
+export default connect(mapStateToProps,null)(Home);
